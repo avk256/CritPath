@@ -3,3 +3,4 @@ pandas==1.4.4
 plotly==5.10.0
 pygraphviz==1.11
 tqdm==4.64.1
+networkx==2.8.7
