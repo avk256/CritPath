@@ -645,7 +645,7 @@ if submit:
         
         # --------- Genetic algorithm
             
-        def fitness_func(solution, solution_idx):
+        def fitness_func(ga_instance, solution, solution_idx):
             
             new_crit_path, _ = crit_path_eval(data, solution)
             error = metric(data, budget, solution)
