@@ -1,0 +1,11 @@
+Разархивировать папку. 
+Открыть Пуск-Anaconda-Conda Promt и перейти в папку как на видео
+В Conda Promt по-очереди написать команды:
+
+conda install -c conda-forge streamlit
+conda install -c plotly plotly
+pip install pygad
+pip install datetimerange
+conda install -c alubbock pygraphviz
+dot -c
+
