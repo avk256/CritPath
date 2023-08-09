@@ -4,3 +4,5 @@ plotly==5.10.0
 pygraphviz==1.11
 tqdm==4.64.1
 networkx==2.8.7
+matplotlib==3.5.3
+matplotlib-inline==0.1.6
