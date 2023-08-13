@@ -522,13 +522,11 @@ def listToString2(s):
     # return string  
     return str1 + 'end' 
 
-def kostyl(df, col_name):
-        
-    # Символ, який ви хочете додати
-    symbol = '.'
-    
-    # Додавання символу до кожного елементу вибраного стовпця
-    df[col_name] = symbol + df[col_name].astype(str)
+def kostyl(df, col_name, status):
+    if status == 1:
+        df[col_name] = df[col_name].str.replace('-', '--')
+    else:
+        df[col_name] = df[col_name].str.replace('--', '-')
     
     return df
 
@@ -644,10 +642,11 @@ if submit:
         fig_prices.write_html("fig_prices.html")
         
         df = df.rename(columns={'act': 'Коди робіт'})
-        df = kostyl(df, 'Коди робіт')
+        df = kostyl(df, 'Коди робіт', 1)
         fig_df = px.timeline(df, x_start="start", x_end="end", y="Коди робіт", title="Діаграма Ганта робіт")
         fig_df.update_yaxes(autorange="reversed") # otherwise tasks are listed from the bottom up
         fig_df.update_xaxes(tickformat='%d-%m-%y')
+        df = kostyl(df, 'Коди робіт', 0)
         df = df.rename(columns={'Коди робіт': 'act'})
         
         fig_df.write_html("fig_df.html")
@@ -764,10 +763,11 @@ if submit:
         
         # fig_prices_opt = px.line(opt_prices_df, x="start", y="price", color="type", title='Optimal Prices vs Budget')
         opt_df = opt_df.rename(columns={'act': 'Коди робіт'})
-        opt_df = kostyl(opt_df, 'Коди робіт')
+        opt_df = kostyl(opt_df, 'Коди робіт', 1)
         opt_fig_df = px.timeline(opt_df, x_start="start", x_end="end", y="Коди робіт", title="Діаграма Ганта робіт")
         opt_fig_df.update_yaxes(autorange="reversed") # otherwise tasks are listed from the bottom up
         opt_fig_df.update_xaxes(tickformat='%d-%m-%y')
+        opt_df = kostyl(opt_df, 'Коди робіт', 0)
         opt_df = opt_df.rename(columns={'Коди робіт': 'act'})
         
         
