@@ -521,6 +521,17 @@ def listToString2(s):
     
     # return string  
     return str1 + 'end' 
+
+def kostyl(df, col_name):
+        
+    # Символ, який ви хочете додати
+    symbol = '.'
+    
+    # Додавання символу до кожного елементу вибраного стовпця
+    df[col_name] = symbol + df[col_name].astype(str)
+    
+    return df
+
 # ----------- Streamlit App Genetic algorithm ----------------------------------------------
 import locale
 
@@ -633,6 +644,7 @@ if submit:
         fig_prices.write_html("fig_prices.html")
         
         df = df.rename(columns={'act': 'Коди робіт'})
+        df = kostyl(df, 'Коди робіт')
         fig_df = px.timeline(df, x_start="start", x_end="end", y="Коди робіт", title="Діаграма Ганта робіт")
         fig_df.update_yaxes(autorange="reversed") # otherwise tasks are listed from the bottom up
         fig_df.update_xaxes(tickformat='%d-%m-%y')
@@ -752,6 +764,7 @@ if submit:
         
         # fig_prices_opt = px.line(opt_prices_df, x="start", y="price", color="type", title='Optimal Prices vs Budget')
         opt_df = opt_df.rename(columns={'act': 'Коди робіт'})
+        opt_df = kostyl(opt_df, 'Коди робіт')
         opt_fig_df = px.timeline(opt_df, x_start="start", x_end="end", y="Коди робіт", title="Діаграма Ганта робіт")
         opt_fig_df.update_yaxes(autorange="reversed") # otherwise tasks are listed from the bottom up
         opt_fig_df.update_xaxes(tickformat='%d-%m-%y')
